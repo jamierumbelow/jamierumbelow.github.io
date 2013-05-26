@@ -9,7 +9,6 @@ body {
   z-index: 100; }
 
 #editor-overlay {
-  white-space: pre;
   z-index: 1000;
   border: 1px solid black;
   width: 70%;
@@ -17,9 +16,11 @@ body {
   top: 50px; }
   #editor-overlay h1, #editor-overlay h2, #editor-overlay h3, #editor-overlay h4, #editor-overlay h5, #editor-overlay h6 {
     font-size: 1.2em;
-    margin: 1px; }
+    margin: 1px;
+    white-space: pre; }
   #editor-overlay p {
-    font-size: 1.2em; }
+    font-size: 1.2em;
+    white-space: pre; }
   #editor-overlay strong, #editor-overlay em {
     font-size: 1em; }
   #editor-overlay h1:before {
