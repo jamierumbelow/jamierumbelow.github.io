@@ -24,9 +24,10 @@
     function Renderer(el, display) {
       this.el = el;
       this.display = display;
+      this.markdown = new window.Showdown.converter();
     }
     Renderer.prototype.render = function() {
-      return this.display.html(window.markdown.toHTML(this.el.val()));
+      return this.display.html(this.markdown.makeHtml(this.el.val()));
     };
     return Renderer;
   })();

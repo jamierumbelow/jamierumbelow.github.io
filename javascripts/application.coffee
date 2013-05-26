@@ -3,7 +3,7 @@
 # initial content, registering all the events to their appropriate
 # listeners and handling the live preview.
 #
-# This class won't work standalone: it depends on markdown-0.4.0.min.js,
+# This class won't work standalone: it depends on showdown-0.3.1.js,
 # jQuery (2.0.1) and the CSS stylesheet
 class Application
 
@@ -41,9 +41,10 @@ class Application
 # the application. Nothing special here.
 class Renderer
   constructor: ( @el, @display ) ->
+    @markdown = new window.Showdown.converter()
 
   render: ->
-    @display.html window.markdown.toHTML(@el.val())
+    @display.html @markdown.makeHtml(@el.val())
 
 # Since we're making the <textarea> invisible and overlaying the HTML <div>, we need
 # to fake a cursor.
