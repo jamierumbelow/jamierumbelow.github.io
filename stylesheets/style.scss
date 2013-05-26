@@ -1,0 +1,55 @@
+$top-margin: 50px;
+
+body
+{
+    margin: $top-margin 0 0 50px;
+
+    font-family: courier;
+    line-height: 2;
+}
+
+#editor
+{
+    opacity: 0;
+    width: 70%;
+    z-index: 100;
+}
+
+#editor-overlay
+{
+    white-space: pre;
+
+    z-index: 1000;
+    border: 1px solid black;
+    width: 70%;
+    position: absolute;
+
+    top: $top-margin;
+
+    h1, h2, h3, h4, h5, h6
+    {
+        font-size: 1.2em;
+        margin: 1px;
+    }
+
+    p { font-size: 1.2em; }
+    strong, em { font-size: 1em; }
+
+    h1 { &:before { content: "# "; } }
+    h2 { &:before { content: "## "; } }
+    h3 { &:before { content: "### "; } }
+    h4 { &:before { content: "#### "; } }
+    h5 { &:before { content: "##### "; } }
+    h6 { &:before { content: "###### "; } }
+    strong { &:before { content: "**"; } &:after { content: "**"; } }
+    em { &:before { content: "_"; } &:after { content: "_"; } }
+}
+
+#editor-cursor
+{
+    border-right: 2px solid #999;
+
+    position: absolute;
+    top: 0px;
+    margin-top: $top-margin;
+}

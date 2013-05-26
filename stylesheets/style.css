@@ -1,0 +1,50 @@
+body {
+  margin: 50px 0 0 50px;
+  font-family: courier;
+  line-height: 2; }
+
+#editor {
+  opacity: 0;
+  width: 70%;
+  z-index: 100; }
+
+#editor-overlay {
+  white-space: pre;
+  z-index: 1000;
+  border: 1px solid black;
+  width: 70%;
+  position: absolute;
+  top: 50px; }
+  #editor-overlay h1, #editor-overlay h2, #editor-overlay h3, #editor-overlay h4, #editor-overlay h5, #editor-overlay h6 {
+    font-size: 1.2em;
+    margin: 1px; }
+  #editor-overlay p {
+    font-size: 1.2em; }
+  #editor-overlay strong, #editor-overlay em {
+    font-size: 1em; }
+  #editor-overlay h1:before {
+    content: "# "; }
+  #editor-overlay h2:before {
+    content: "## "; }
+  #editor-overlay h3:before {
+    content: "### "; }
+  #editor-overlay h4:before {
+    content: "#### "; }
+  #editor-overlay h5:before {
+    content: "##### "; }
+  #editor-overlay h6:before {
+    content: "###### "; }
+  #editor-overlay strong:before {
+    content: "**"; }
+  #editor-overlay strong:after {
+    content: "**"; }
+  #editor-overlay em:before {
+    content: "_"; }
+  #editor-overlay em:after {
+    content: "_"; }
+
+#editor-cursor {
+  border-right: 2px solid #999;
+  position: absolute;
+  top: 0px;
+  margin-top: 50px; }
