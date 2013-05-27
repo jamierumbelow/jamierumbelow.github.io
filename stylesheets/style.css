@@ -66,7 +66,14 @@ section {
         margin-bottom: 10px; }
       section #preview-wrapper #preview strong {
         font-family: 'Tahoma'; }
+      section #preview-wrapper #preview a {
+        color: #8bbf36; }
+      section #preview-wrapper #preview a:hover {
+        text-decoration: none; }
       section #preview-wrapper #preview img {
         margin: 15px 15px 15px 0;
         float: left;
         border: 1px solid #EEE; }
+      section #preview-wrapper #preview pre {
+        background: #EEE;
+        padding: 15px; }

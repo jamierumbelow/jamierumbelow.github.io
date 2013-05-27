@@ -106,7 +106,10 @@ section
             h1, h2, h3, h4, h5, h6, p { margin: 0; font-size: 1em; }
             p { margin-bottom: 10px; }
             strong { font-family: 'Tahoma'; }
+            a { color: #8bbf36; }
+            a:hover { text-decoration: none; }
             img { margin: 15px 15px 15px 0; float: left; border: 1px solid #EEE; }
+            pre { background: #EEE; padding: 15px; }
         }
     }
 }
