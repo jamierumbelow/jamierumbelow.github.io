@@ -1,51 +1,72 @@
 body {
-  margin: 50px 0 0 50px;
-  font-family: courier;
+  margin: 0;
+  font-family: 'Average Sans', sans-serif;
   line-height: 2; }
 
-#editor {
-  opacity: 0;
-  width: 70%;
-  z-index: 100; }
-
-#editor-overlay {
-  z-index: 1000;
-  border: 1px solid black;
-  width: 70%;
-  position: absolute;
-  top: 50px; }
-  #editor-overlay h1, #editor-overlay h2, #editor-overlay h3, #editor-overlay h4, #editor-overlay h5, #editor-overlay h6 {
-    font-size: 1.2em;
-    margin: 1px;
-    white-space: pre; }
-  #editor-overlay p {
-    font-size: 1.2em;
-    white-space: pre; }
-  #editor-overlay strong, #editor-overlay em {
-    font-size: 1em; }
-  #editor-overlay h1:before {
-    content: "# "; }
-  #editor-overlay h2:before {
-    content: "## "; }
-  #editor-overlay h3:before {
-    content: "### "; }
-  #editor-overlay h4:before {
-    content: "#### "; }
-  #editor-overlay h5:before {
-    content: "##### "; }
-  #editor-overlay h6:before {
-    content: "###### "; }
-  #editor-overlay strong:before {
-    content: "**"; }
-  #editor-overlay strong:after {
-    content: "**"; }
-  #editor-overlay em:before {
-    content: "_"; }
-  #editor-overlay em:after {
-    content: "_"; }
-
-#editor-cursor {
-  border-right: 2px solid #999;
-  position: absolute;
-  top: 0px;
-  margin-top: 50px; }
+section {
+  max-width: 1362px; }
+  section header {
+    border-bottom: 1px solid #EEE;
+    padding: 30px; }
+    section header h1 {
+      float: right;
+      height: 230px;
+      overflow: hidden;
+      margin-top: -150px; }
+      section header h1 a {
+        font-family: 'Helvetica Neue';
+        font-size: 7em;
+        letter-spacing: -10px;
+        text-decoration: none;
+        color: #DDD; }
+        section header h1 a:hover {
+          color: #aaaaaa; }
+    section header h2 {
+      margin: 0;
+      color: #8bbf36;
+      font-size: 1.5em; }
+  section #editor-content {
+    display: none; }
+  section #editor-wrapper {
+    clear: both;
+    width: 45%;
+    padding: 25px;
+    float: left; }
+    section #editor-wrapper h3 {
+      margin: 0 0 0 5px;
+      text-transform: lowercase;
+      color: #999;
+      font-size: 0.8em; }
+      section #editor-wrapper h3:before {
+        content: '/'; }
+    section #editor-wrapper .CodeMirror {
+      line-height: 2;
+      font-size: 1.15em;
+      height: auto; }
+      section #editor-wrapper .CodeMirror .CodeMirror-scroll {
+        overflow-y: hidden;
+        overflow-x: auto; }
+  section #preview-wrapper {
+    width: 45%;
+    padding: 25px;
+    float: left; }
+    section #preview-wrapper h3 {
+      margin: 0;
+      text-transform: lowercase;
+      color: #999;
+      font-size: 0.8em; }
+      section #preview-wrapper h3:before {
+        content: '/'; }
+    section #preview-wrapper #preview {
+      font-size: 1em; }
+      section #preview-wrapper #preview h1, section #preview-wrapper #preview h2, section #preview-wrapper #preview h3, section #preview-wrapper #preview h4, section #preview-wrapper #preview h5, section #preview-wrapper #preview h6, section #preview-wrapper #preview p {
+        margin: 0;
+        font-size: 1em; }
+      section #preview-wrapper #preview p {
+        margin-bottom: 10px; }
+      section #preview-wrapper #preview strong {
+        font-family: 'Tahoma'; }
+      section #preview-wrapper #preview img {
+        margin: 15px 15px 15px 0;
+        float: left;
+        border: 1px solid #EEE; }

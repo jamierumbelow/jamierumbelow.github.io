@@ -16,7 +16,10 @@
         this.renderer.render();
         return this.cursor.updatePosition();
       }, this));
-      return this.el.focus();
+      this.el.focus();
+      return this.display.click(__bind(function() {
+        return this.el.focus();
+      }, this));
     };
     return Application;
   })();
@@ -60,8 +63,10 @@
     return Cursor;
   })();
   $(function() {
-    var app;
-    app = new Application('#editor', '#editor-overlay');
-    return app.setup();
+    var myCodeMirror;
+    return myCodeMirror = CodeMirror($('body').get(0), {
+      value: "# Ahoy",
+      mode: "markdown"
+    });
   });
 }).call(this);

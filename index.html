@@ -3,25 +3,82 @@
 <head>
     <title>Freelance Web Development | Jamie Rumbelow</title>
 
-    <link href='http://fonts.googleapis.com/css?family=Noto+Serif' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Average+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/codemirror.css">
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
 
-    <script type="text/javascript" src="/javascripts/showdown-0.3.1.js"></script>
     <script type="text/javascript" src="/javascripts/jquery-2.0.1.min.js"></script>
-    <script type="text/javascript" src="/javascripts/application.js"></script>
+    <script type="text/javascript" src="/javascripts/codemirror.js"></script>
+    <script type="text/javascript" src="/javascripts/codemirror.markdown.js"></script>
+    <script type="text/javascript" src="/javascripts/showdown-0.3.1.js"></script>
+    
+    <script>
+        $(function()
+        {
+            /**
+             * Fire up a new instance of the CodeMirror editor and set the
+             * configuration values
+             */
+            var editor = CodeMirror($('#editor-wrapper').get(0),
+            {
+                value: $('#editor-content').text(),
+                mode:  "markdown",
+                lineWrapping: true,
+                viewportMargin: Infinity
+            });
+
+            /**
+             * When the content of the editor changes, we want to regenerate
+             * the preview from the Markdown source
+             */
+            editor.on('change', function(instance, changeObj)
+            {
+                var src = instance.getValue(),
+                    md = new window.Showdown.converter();
+
+                $('#preview').html(md.makeHtml(src));
+
+                if (typeof changeObj.next !== "undefined")
+                {
+                    next();
+                }
+            });
+
+            /**
+             * Generate the preview instantly... @todo Move this into pre-rendered HTML below
+             */
+            var md = new window.Showdown.converter();
+
+            $('#preview').html(md.makeHtml(editor.getValue()));
+        });
+    </script>
 </head>
 <body>
-    <textarea id="editor"># Jamie Rumbelow
-## Like Jesus, but with a Macbook
-</textarea>
+    <section>
+        <header>
+            <h1><a href="/" rel="home">JR</a></h1>
+            <h2>Slick, competent, professional freelance web development</h2>
+        </header>
 
-    <div id="editor-overlay"></div>
+        <div id="editor-wrapper">
+            <h3>Markdown</h3>
+            <div id="editor-content">![Me, drinking](/images/me.jpg) I'm Jamie Rumbelow, a freelance web developer with class, professionalism and oodles of drive based in the beautiful British city of Cambridge. I want to spend my time working on _interesting_ PHP and JavaScript applications and libraries. I'm at my happiest when working on testable, extensible and clever code, for interesting projects, with interesting people. I want to help make the web tick.
 
-    <!-- <div id="wrapper">
-        <h2>Like Jesus, but with a Macbook</h2>
-        <h1>Jamie Rumbelow</h1>
+I've written three books on CodeIgniter, a [trilogy called the CodeIgniter Handbook](https://efendibooks.com/books/codeigniter-handbook/vol-1). I'm a contributor to [lots of open source projects](https://github.com/jamierumbelow) and you can usually find me tweeting about coding and politics [@jamierumbelow](https://twitter.com/jamierumbelow).
 
-        <p>I'm Jamie Rumbelow, a freelance web developer with class, professionalism and oodles of drive. I spend my time working on interesting PHP and JavaScript applications. I'm at my happiest when working on testable, extensible and clever code, for interesting projects, with interesting people.</p>
-    </div> -->
+I'm really good at these things:
+
+* **PHP** - CodeIgniter, Laravel, PHPUnit, ExpressionEngine, Craft CMS
+* **JavaScript** - CoffeeScript, jQuery, node.js
+* **Ruby** - Rails, Sinatra
+
+</div>
+        </div>
+
+        <div id="preview-wrapper">
+            <h3>Preview</h3>
+            <div id="preview"></div>
+        </div>
+    </section>
 </body>
 </html>
