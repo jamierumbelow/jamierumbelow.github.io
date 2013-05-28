@@ -77,3 +77,37 @@ section {
       section #preview-wrapper #preview pre {
         background: #EEE;
         padding: 15px; }
+
+@media only screen and (max-width: 1024px) {
+  section header {
+    overflow: auto;
+    padding-bottom: 0; }
+    section header h1 {
+      height: auto;
+      text-align: center;
+      margin: -50px 0 0 0;
+      line-height: 0.7;
+      float: right; }
+    section header h2 {
+      font-size: 1.3em;
+      text-align: center;
+      float: left; }
+  section #editor-wrapper {
+    padding: 25px 0 25px 25px; } }
+@media only screen and (max-width: 768px) {
+  section header h1 {
+    float: none;
+    height: auto;
+    text-align: center;
+    margin-top: 0;
+    line-height: 0.8; }
+  section header h2 {
+    float: none;
+    font-size: 1.3em;
+    text-align: center;
+    line-height: 1.5;
+    padding: 15px 0; }
+  section #editor-wrapper {
+    display: none; }
+  section #preview-wrapper {
+    width: auto; } }
