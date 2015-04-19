@@ -1,113 +1,38 @@
-body {
-  margin: 0;
-  font-family: 'Average Sans', sans-serif;
-  line-height: 2; }
+body
+{
+    font-family: 'Gentium Book Basic', Georgia, serif;
+    color: #444;
+    text-transform: lowercase;
+    padding-bottom: 50px;
+}
 
-section {
-  max-width: 1362px; }
-  section header {
+.container
+{
+    margin-top: 50px;
+}
+
+h1
+{
+    font-family: 'Gentium Book Basic', Georgia, serif;
+    font-size: 5em;
+}
+
+h2
+{
+    font-size: 2em;
     border-bottom: 1px solid #EEE;
-    padding: 30px; }
-    section header h1 {
-      float: right;
-      height: 230px;
-      overflow: hidden;
-      margin-top: -150px; }
-      section header h1 a {
-        font-family: 'Helvetica Neue';
-        font-size: 7em;
-        letter-spacing: -10px;
-        text-decoration: none;
-        color: #DDD; }
-        section header h1 a:hover {
-          color: #aaaaaa; }
-    section header h2 {
-      margin: 0;
-      color: #8bbf36;
-      font-size: 1.5em; }
-  section #editor-content {
-    display: none; }
-  section #editor-wrapper {
-    clear: both;
-    width: 45%;
-    padding: 25px;
-    float: left; }
-    section #editor-wrapper h3 {
-      margin: 0 0 0 5px;
-      text-transform: lowercase;
-      color: #999;
-      font-size: 0.8em; }
-      section #editor-wrapper h3:before {
-        content: '/'; }
-    section #editor-wrapper .CodeMirror {
-      line-height: 2;
-      font-size: 1.15em;
-      height: auto; }
-      section #editor-wrapper .CodeMirror .CodeMirror-scroll {
-        overflow-y: hidden;
-        overflow-x: auto; }
-  section #preview-wrapper {
-    width: 45%;
-    padding: 25px;
-    float: left; }
-    section #preview-wrapper h3 {
-      margin: 0;
-      text-transform: lowercase;
-      color: #999;
-      font-size: 0.8em; }
-      section #preview-wrapper h3:before {
-        content: '/'; }
-    section #preview-wrapper #preview {
-      font-size: 1em; }
-      section #preview-wrapper #preview h1, section #preview-wrapper #preview h2, section #preview-wrapper #preview h3, section #preview-wrapper #preview h4, section #preview-wrapper #preview h5, section #preview-wrapper #preview h6, section #preview-wrapper #preview p {
-        margin: 0;
-        font-size: 1em; }
-      section #preview-wrapper #preview p {
-        margin-bottom: 10px; }
-      section #preview-wrapper #preview strong {
-        font-family: 'Tahoma'; }
-      section #preview-wrapper #preview a {
-        color: #8bbf36; }
-      section #preview-wrapper #preview a:hover {
-        text-decoration: none; }
-      section #preview-wrapper #preview img {
-        margin: 15px 15px 15px 0;
-        float: left;
-        border: 1px solid #EEE; }
-      section #preview-wrapper #preview pre {
-        background: #EEE;
-        padding: 15px; }
+    padding-bottom: 30px;
+}
 
-@media only screen and (max-width: 1024px) {
-  section header {
-    overflow: auto;
-    padding-bottom: 0; }
-    section header h1 {
-      height: auto;
-      text-align: center;
-      margin: -50px 0 0 0;
-      line-height: 0.7;
-      float: right; }
-    section header h2 {
-      font-size: 1.3em;
-      text-align: center;
-      float: left; }
-  section #editor-wrapper {
-    padding: 25px 0 25px 25px; } }
-@media only screen and (max-width: 768px) {
-  section header h1 {
-    float: none;
-    height: auto;
-    text-align: center;
-    margin-top: 0;
-    line-height: 0.8; }
-  section header h2 {
-    float: none;
-    font-size: 1.3em;
-    text-align: center;
-    line-height: 1.5;
-    padding: 15px 0; }
-  section #editor-wrapper {
-    display: none; }
-  section #preview-wrapper {
-    width: auto; } }
+p, ul
+{
+    font-size: 1.5em;
+    font-weight: normal;
+    text-transform: none;
+    line-height: 1.8;
+}
+
+p
+{
+    margin-top: 30px;
+}
