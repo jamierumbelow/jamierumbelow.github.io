@@ -11,22 +11,43 @@ body
     margin-top: 50px;
 }
 
+header
+{
+    border-bottom: 1px solid #EEE;
+}
+
+header span.profile
+{
+    float: right;
+    height: 260px;
+    overflow: hidden;
+}
+
+header span.profile img
+{
+    width: 280px;
+}
+
+header span.titles
+{
+    padding-left: 0;
+}
+
 h1
 {
     font-family: 'Gentium Book Basic', Georgia, serif;
     font-size: 5em;
+    margin-top: 100px;
 }
 
 h2
 {
     font-size: 2em;
-    border-bottom: 1px solid #EEE;
-    padding-bottom: 30px;
 }
 
 p, ul
 {
-    font-size: 1.5em;
+    font-size: 1.4em;
     font-weight: normal;
     text-transform: none;
     line-height: 1.8;
@@ -35,4 +56,21 @@ p, ul
 p
 {
     margin-top: 30px;
+}
+
+#books li
+{
+    padding: 10px 0;
+}
+
+#books li a b.great
+{
+    color: green;
+}
+
+#books li p
+{
+    font-size: 0.8em;
+    margin-top: 5px;
+    margin-bottom: 20px;
 }
