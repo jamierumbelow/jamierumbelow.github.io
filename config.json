@@ -1,0 +1,34 @@
+{
+  "pages": [
+    {
+      "path": "",
+      "title": "home",
+      "content": "index"
+    },
+    {
+      "path": "now",
+      "title": "now",
+      "content": "now"
+    },
+    {
+      "path": "books",
+      "title": "books",
+      "content": "books"
+    },
+    {
+      "path": "blogroll",
+      "title": "twitto-blogroll",
+      "content": "blogroll"
+    },
+    {
+      "path": "paused",
+      "title": "paused",
+      "content": "paused"
+    },
+    {
+      "path": "restaurants",
+      "title": "restaurants",
+      "content": "restaurants"
+    }
+  ]
+}

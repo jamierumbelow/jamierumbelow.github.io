@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a {
+  @apply text-blue-900;
+}
+
+a:hover {
+  @apply bg-blue-900 text-blue-50;
+}
+
+p {
+  @apply mb-4;
+}

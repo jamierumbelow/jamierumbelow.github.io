@@ -7,9 +7,14 @@ const csv = require("csv-parser");
 
 const CSV_PATH = "./data/books.csv";
 
-const toHtml = row => {
+const toHtml = (row) => {
   const tags = row.tags.split(",");
   let html = `${row.title}`;
+
+  // weird title formatting
+  if (html.slice(-5) === ", The") {
+    html = `The ${html}`;
+  }
 
   // mark good/great books
   if (tags.includes("good")) {
@@ -33,14 +38,16 @@ const books = [];
 
 fs.createReadStream(CSV_PATH)
   .pipe(csv())
-  .on("data", data => books.push(data))
+  .on("data", (data) => books.push(data))
   .on("end", () => {
-    console.log('<ul id="books">');
-    console.log(
-      books
-        .map(toHtml)
-        .reverse()
-        .join("\n")
+    const booksHtml = fs.readFileSync("./content/books.html").toString();
+    const newBooksUl = `<ul id="books">${books
+      .map(toHtml)
+      .reverse()
+      .join("\n")}</ul>`;
+
+    fs.writeFileSync(
+      "./content/books.html",
+      booksHtml.replace(/\<ul id="books"\>(.*)\<\/ul\>/, newBooksUl)
     );
-    console.log("</ul>");
   });
