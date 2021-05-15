@@ -87,7 +87,7 @@ pages.forEach(async (page) => {
     });
 
     fs.writeFileSync(
-      `./public/${page.path || page.content}.html`,
+      `./docs/${page.path || page.content}.html`,
       templatedContent
     );
 
