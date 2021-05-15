@@ -14,7 +14,6 @@
   "scripts": {
     "css": "mix --production",
     "content": "node build.js",
-    "books": "node generateBooksHtml.js",
     "build": "yarn content && yarn css"
   }
 }
