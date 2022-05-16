@@ -27,7 +27,7 @@ const toBookLi = (row) => {
   }
 
   // wrap in anchor
-  html = `<a href="https://amazon.co.uk/dp/${row.isbn10}" target="_blank">${html}</a>`;
+  html = `<a href="https://amazon.co.uk/dp/${row.upc_isbn10}" target="_blank">${html}</a>`;
 
   // author
   if (row.authors) {
