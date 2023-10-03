@@ -20,11 +20,11 @@ const toBookLi = (row) => {
   }
 
   // mark good/great books
-  if (tags.includes("good")) {
-    html = `<b>${html}</b>`;
-  } else if (tags.includes("great")) {
-    html = `<b class="text-green-800 hover:text-white">${html}</b>`;
-  }
+  // if (tags.includes("good")) {
+  //   html = `<b>${html}</b>`;
+  // } else if (tags.includes("great")) {
+  //   html = `<b class="text-green-800 hover:text-white">${html}</b>`;
+  // }
 
   // wrap in anchor
   html = `<a href="https://amazon.co.uk/dp/${row.upc_isbn10}" target="_blank">${html}</a>`;
