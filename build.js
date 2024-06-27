@@ -73,9 +73,12 @@ pages.forEach(async (page) => {
     const content = fs.readFileSync(`./content/${page.content}.html`);
     const { mtime } = fs.statSync(`./content/${page.content}.html`);
 
+    let modifiedTime = mtime;
     let booksList;
     if (page.content === "books") {
       booksList = await getBooksList();
+      const { mtime } = fs.statSync(CSV_PATH);
+      modifiedTime = mtime;
     }
 
     const templatedContent = parse({
@@ -83,7 +86,7 @@ pages.forEach(async (page) => {
       nav,
       content,
       booksList,
-      updatedAt: `${mtime.getDate()}/${mtime.getMonth()}/${mtime.getFullYear()}`,
+      updatedAt: `${modifiedTime.getDate()}/${modifiedTime.getMonth()}/${modifiedTime.getFullYear()}`,
     });
 
     fs.writeFileSync(
