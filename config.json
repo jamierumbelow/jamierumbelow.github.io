@@ -6,9 +6,9 @@
       "content": "index"
     },
     {
-      "path": "now",
-      "title": "now",
-      "content": "now"
+      "path": "writing",
+      "title": "writing",
+      "content": "writing"
     },
     {
       "path": "books",
@@ -17,13 +17,8 @@
     },
     {
       "path": "blogroll",
-      "title": "twitto-blogroll",
+      "title": "blogroll",
       "content": "blogroll"
-    },
-    {
-      "path": "paused",
-      "title": "paused",
-      "content": "paused"
     },
     {
       "path": "restaurants",
