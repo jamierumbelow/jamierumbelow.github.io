@@ -23,3 +23,9 @@ export const copyDir = async (src: string, dest: string) => {
     }
   }
 };
+
+export const parseTags = (text: string) =>
+  text.replaceAll(
+    /#\w+/g,
+    '<span class="px-2 py-1 rounded-full bg-blue-200 text-blue-900 border-blue-900 font-semibold">$&</span>'
+  );

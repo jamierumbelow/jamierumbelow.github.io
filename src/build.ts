@@ -7,12 +7,23 @@ import { template } from "./template";
 import { copyDir, slugify } from "./utils";
 import { buildCss } from "./css";
 
+const normaliseContent = (content: string) => {
+  // remove the first line
+  const lines = content.split("\n");
+  const rest = lines.slice(1).join("\n");
+  let normalised = rest;
+  // remove the public tag
+  normalised = normalised.replaceAll("#" + PUBLIC_TAG, "");
+  // done
+  return normalised;
+};
+
 const buildPage = (page: { ZTITLE: string; ZTEXT: string }, nav: string) => {
   const slug = slugify(page.ZTITLE);
 
   const title = page.ZTITLE;
 
-  const content = md.render(page.ZTEXT);
+  const content = md.render(normaliseContent(page.ZTEXT));
 
   const filename = `${slug}.html`;
 
