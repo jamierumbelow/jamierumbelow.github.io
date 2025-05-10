@@ -36,7 +36,7 @@ const buildHomepage = (
 ) => {
   const slug = "home";
 
-  const title = "homepage";
+  const title = "home";
 
   const [, , contentMd] = homepage.ZTEXT.split(/\*\*\*/);
 
