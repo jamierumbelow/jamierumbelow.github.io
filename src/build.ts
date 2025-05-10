@@ -34,9 +34,9 @@ const buildHomepage = (
   homepage: { ZTITLE: string; ZTEXT: string },
   nav: string
 ) => {
-  const slug = slugify(homepage.ZTITLE);
+  const slug = "home";
 
-  const title = homepage.ZTITLE;
+  const title = "homepage";
 
   const [, , contentMd] = homepage.ZTEXT.split(/\*\*\*/);
 
