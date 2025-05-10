@@ -1,7 +1,7 @@
 import { spawn } from "bun";
 
 export const buildCss = async () => {
-  spawn([
+  const proc = spawn([
     "npx",
     "@tailwindcss/cli",
     "-i",
@@ -9,4 +9,5 @@ export const buildCss = async () => {
     "-o",
     "./docs/style.css",
   ]);
+  await proc.exited;
 };
