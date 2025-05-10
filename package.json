@@ -4,7 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "bun run cmd/index.ts build"
+    "build": "bun run cmd/index.ts build",
+    "deploy": "bun run cmd/index.ts deploy"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.6",

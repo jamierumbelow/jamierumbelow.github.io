@@ -1,5 +1,6 @@
 import { parseArgs } from "util";
 import { build } from "../src/build";
+import { deploy } from "../src/deploy";
 
 const { values, positionals } = parseArgs({
   arg: Bun.argv,
@@ -10,6 +11,11 @@ const { values, positionals } = parseArgs({
 switch (positionals[0]) {
   case "build":
     await build();
+    break;
+
+  case "deploy":
+    await build();
+    await deploy();
     break;
 
   default:
