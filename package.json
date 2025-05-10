@@ -1,20 +1,21 @@
 {
-  "dependencies": {
-    "csv-parser": "^2.2.0"
+  "name": "notes.jamierumbelow.net",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "bun run cmd/index.ts build"
   },
   "devDependencies": {
-    "autoprefixer": "^10.2.5",
-    "cssnano": "^5.0.2",
-    "laravel-mix": "^6.0.19",
-    "laravel-mix-tailwind": "^0.1.2",
-    "postcss": "^8.2.15",
-    "postcss-cli": "^8.3.1",
-    "prettier": "^2.6.1",
-    "tailwindcss": "^2.1.2"
+    "@tailwindcss/cli": "^4.1.6",
+    "@types/bun": "latest",
+    "@types/markdown-it": "^14.1.2",
+    "tailwindcss": "^4.1.6"
   },
-  "scripts": {
-    "css": "mix --production",
-    "content": "node build.js",
-    "build": "yarn content && yarn css"
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "markdown-it": "^14.1.0"
   }
 }

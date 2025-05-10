@@ -1,7 +1,15 @@
-<!DOCTYPE html>
+export const template = ({
+  title,
+  nav,
+  content,
+}: {
+  title: string;
+  nav: string;
+  content: string;
+}) => `<!DOCTYPE html>
 <html>
   <head>
-    <title>now &middot; jamie rumbelow</title>
+    <title>${title} &middot; jamie rumbelow</title>
     <link href="./style.css" rel="stylesheet" />
   </head>
   <body class="text-sm">
@@ -17,30 +25,16 @@
         <span class="mt-8">
           <h1 class="font-semibold">Jamie Rumbelow</h1>
           <ul>
-            <li><a href="/">home</a></li>
-<li><a href="/now">now</a></li>
-<li><a href="/books">books</a></li>
-<li><a href="/blogroll">blogroll</a></li>
-<li><a href="/restaurants">restaurants</a></li>
+            ${nav}
           </ul>
         </span>
       </header>
       <div
         class="w-full p-8 mt-2 mr-auto leading-relaxed  md:p-0 md:mt-0 md:w-1/2 lg:w-1/3"
       >
-        <p>I'm currently living and (not) working in <strong>London</strong>.</p>
-<p>I am:</p>
-<ul class="list-disc list-inside">
-  <li>looking for work;</li>
-  <li>raising my beautiful daughter;</li>
-  <li>writing occasionally about <a href="https://littlebuilt.com" target="_blank">UK housing, infrastructure, and tech</a>;</li>
-</ul>
-
-<p class="mt-12">
-  <small>Last updated: 9/4/2025.</small>
-</p>
-
+        ${content}
       </div>
     </div>
   </body>
 </html>
+`;
