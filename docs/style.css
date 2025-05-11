@@ -333,6 +333,9 @@ p {
 hr {
   margin-block: calc(var(--spacing) * 4);
 }
+ul, ol {
+  margin-bottom: calc(var(--spacing) * 4);
+}
 @property --tw-leading {
   syntax: "*";
   inherits: false;

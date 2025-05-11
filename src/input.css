@@ -15,3 +15,8 @@ p {
 hr {
   @apply my-4;
 }
+
+ul,
+ol {
+  @apply mb-4;
+}
