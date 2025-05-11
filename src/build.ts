@@ -27,10 +27,13 @@ const buildPage = (page: { ZTITLE: string; ZTEXT: string }, nav: string) => {
 
   const filename = `${slug}.html`;
 
+  const lastUpdated = new Date();
+
   const html = template({
     title,
     nav,
     content,
+    lastUpdated,
   });
 
   return {
