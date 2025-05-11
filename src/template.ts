@@ -34,7 +34,7 @@ export const template = ({
         </span>
       </header>
       <div
-        class="w-full p-8 mt-2 mr-auto leading-relaxed  md:p-0 md:mt-0 md:w-1/2 lg:w-1/3"
+        class="w-full p-8 mt-2 mr-auto leading-relaxed  md:p-0 md:mt-0 md:w-1/2 xl:w-1/3"
       >
         ${content}
 

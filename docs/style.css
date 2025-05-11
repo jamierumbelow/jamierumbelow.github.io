@@ -309,14 +309,14 @@
       padding: calc(var(--spacing) * 0);
     }
   }
-  .lg\:w-1\/3 {
-    @media (width >= 64rem) {
-      width: calc(1/3 * 100%);
-    }
-  }
   .lg\:w-1\/6 {
     @media (width >= 64rem) {
       width: calc(1/6 * 100%);
+    }
+  }
+  .xl\:w-1\/3 {
+    @media (width >= 80rem) {
+      width: calc(1/3 * 100%);
     }
   }
 }
