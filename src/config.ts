@@ -10,7 +10,7 @@ export const DB_PATH = join(
   "database.sqlite"
 );
 
+export const BOOKS_CSV_PATH = "./data/books.csv";
 export const PUBLIC_TAG = "PUBLIC/jamierumbelow.net";
 export const PUBLIC_HOMEPAGE_TITLE = "jamierumbelow.net";
-
 export const OUT_DIR = "docs";

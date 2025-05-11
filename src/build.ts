@@ -6,6 +6,7 @@ import { buildNav } from "./nav";
 import { template } from "./template";
 import { copyDir, slugify } from "./utils";
 import { buildCss } from "./css";
+import { compileBooks } from "./books";
 
 const normaliseContent = (content: string) => {
   // remove the first line
@@ -18,7 +19,17 @@ const normaliseContent = (content: string) => {
   return normalised;
 };
 
-const buildPage = (page: { ZTITLE: string; ZTEXT: string }, nav: string) => {
+const compileSpecials = async (text: string) => {
+  let content = text;
+  // replace {{books}} with the books list
+  content = await compileBooks(content);
+  return content;
+};
+
+const buildPage = async (
+  page: { ZTITLE: string; ZTEXT: string },
+  nav: string
+) => {
   const slug = slugify(page.ZTITLE);
 
   const title = page.ZTITLE;
@@ -29,12 +40,14 @@ const buildPage = (page: { ZTITLE: string; ZTEXT: string }, nav: string) => {
 
   const lastUpdated = new Date();
 
-  const html = template({
+  let html = template({
     title,
     nav,
     content,
     lastUpdated,
   });
+
+  html = await compileSpecials(html);
 
   return {
     filename,
@@ -84,7 +97,9 @@ export const build = async () => {
     (p) => p.Z_PK !== homepage.Z_PK
   );
 
-  const builtPages = pages.map((page) => buildPage(page, nav));
+  const builtPages = await Promise.all(
+    pages.map((page) => buildPage(page, nav))
+  );
   builtPages.unshift(buildHomepage(homepage, nav));
 
   await rm(OUT_DIR, { recursive: true, force: true });
