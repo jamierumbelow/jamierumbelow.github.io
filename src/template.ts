@@ -2,17 +2,19 @@ export const template = ({
   title,
   nav,
   content,
+  cssHash,
   lastUpdated,
 }: {
   title: string;
   nav: string;
   content: string;
+  cssHash: string;
   lastUpdated?: Date;
 }) => `<!DOCTYPE html>
 <html>
   <head>
     <title>${title} &middot; jamie rumbelow</title>
-    <link href="./style.css" rel="stylesheet" />
+    <link href="./style.css${cssHash}" rel="stylesheet" />
   </head>
   <body class="text-sm">
     <div

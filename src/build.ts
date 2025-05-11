@@ -36,6 +36,8 @@ const buildPage = async (
 
   const content = md.render(normaliseContent(page.ZTEXT));
 
+  const cssHash = `?v=${Date.now()}`;
+
   const filename = `${slug}.html`;
 
   const lastUpdated = new Date();
@@ -44,6 +46,7 @@ const buildPage = async (
     title,
     nav,
     content,
+    cssHash,
     lastUpdated,
   });
 
@@ -69,12 +72,15 @@ const buildHomepage = (
 
   const content = md.render(contentMd);
 
+  const cssHash = `?v=${Date.now()}`;
+
   const filename = `index.html`;
 
   const html = template({
     title,
     nav,
     content,
+    cssHash,
   });
 
   return {
