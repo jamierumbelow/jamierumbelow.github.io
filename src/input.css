@@ -11,3 +11,7 @@ a:hover {
 p {
   @apply mb-4;
 }
+
+hr {
+  @apply my-4;
+}

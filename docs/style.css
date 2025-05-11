@@ -330,6 +330,9 @@ a:hover {
 p {
   margin-bottom: calc(var(--spacing) * 4);
 }
+hr {
+  margin-block: calc(var(--spacing) * 4);
+}
 @property --tw-leading {
   syntax: "*";
   inherits: false;
