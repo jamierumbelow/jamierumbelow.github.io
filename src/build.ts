@@ -4,7 +4,7 @@ import { queryPageForTitle, queryPagesForTag } from "./db";
 import { md } from "./markdown";
 import { buildNav } from "./nav";
 import { template } from "./template";
-import { copyDir, slugify } from "./utils";
+import { appleEpochDateToDate, copyDir, fileHash, slugify } from "./utils";
 import { buildCss } from "./css";
 import { compileBooks } from "./books";
 
@@ -27,7 +27,7 @@ const compileSpecials = async (text: string) => {
 };
 
 const buildPage = async (
-  page: { ZTITLE: string; ZTEXT: string },
+  page: { ZTITLE: string; ZTEXT: string; ZMODIFICATIONDATE: number },
   nav: string
 ) => {
   const slug = slugify(page.ZTITLE);
@@ -36,11 +36,11 @@ const buildPage = async (
 
   const content = md.render(normaliseContent(page.ZTEXT));
 
-  const cssHash = `?v=${Date.now()}`;
+  const cssHash = `?v=${await fileHash("docs/style.css")}`;
 
   const filename = `${slug}.html`;
 
-  const lastUpdated = new Date();
+  const lastUpdated = appleEpochDateToDate(page.ZMODIFICATIONDATE);
 
   let html = template({
     title,
@@ -60,7 +60,7 @@ const buildPage = async (
   };
 };
 
-const buildHomepage = (
+const buildHomepage = async (
   homepage: { ZTITLE: string; ZTEXT: string },
   nav: string
 ) => {
@@ -72,7 +72,7 @@ const buildHomepage = (
 
   const content = md.render(contentMd);
 
-  const cssHash = `?v=${Date.now()}`;
+  const cssHash = `?v=${await fileHash("docs/style.css")}`;
 
   const filename = `index.html`;
 
@@ -106,7 +106,7 @@ export const build = async () => {
   const builtPages = await Promise.all(
     pages.map((page) => buildPage(page, nav))
   );
-  builtPages.unshift(buildHomepage(homepage, nav));
+  builtPages.unshift(await buildHomepage(homepage, nav));
 
   await rm(OUT_DIR, { recursive: true, force: true });
   await mkdir(OUT_DIR, { recursive: true });
