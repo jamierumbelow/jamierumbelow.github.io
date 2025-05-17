@@ -1,12 +1,13 @@
 import { mkdir, rm } from "node:fs/promises";
 import { OUT_DIR, PUBLIC_HOMEPAGE_TITLE, PUBLIC_TAG } from "./config";
-import { queryPageForTitle, queryPagesForTag } from "./db";
+import { queryPageForTitle, queryPagesForTag, type Page } from "./db";
 import { md } from "./markdown";
 import { buildNav } from "./nav";
 import { template } from "./template";
 import { appleEpochDateToDate, copyDir, fileHash, slugify } from "./utils";
 import { buildCss } from "./css";
 import { compileBooks } from "./books";
+import { compilePageRefs } from "./pageRefs";
 
 const normaliseContent = (content: string) => {
   // remove the first line
@@ -19,17 +20,17 @@ const normaliseContent = (content: string) => {
   return normalised;
 };
 
-const compileSpecials = async (text: string) => {
+const compileSpecials = async (text: string, pages: Page[]) => {
   let content = text;
   // replace {{books}} with the books list
   content = await compileBooks(content);
+  // replace [[Page Title]] with a link to the page (if it exists)
+  content = await compilePageRefs(content, pages);
+  // done
   return content;
 };
 
-const buildPage = async (
-  page: { ZTITLE: string; ZTEXT: string; ZMODIFICATIONDATE: number },
-  nav: string
-) => {
+const buildPage = async (page: Page, nav: string, pages: Page[]) => {
   const slug = slugify(page.ZTITLE);
 
   const title = page.ZTITLE;
@@ -50,7 +51,7 @@ const buildPage = async (
     lastUpdated,
   });
 
-  html = await compileSpecials(html);
+  html = await compileSpecials(html, pages);
 
   return {
     filename,
@@ -104,7 +105,7 @@ export const build = async () => {
   );
 
   const builtPages = await Promise.all(
-    pages.map((page) => buildPage(page, nav))
+    pages.map((page) => buildPage(page, nav, pages))
   );
   builtPages.unshift(await buildHomepage(homepage, nav));
 

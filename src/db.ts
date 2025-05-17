@@ -3,17 +3,16 @@ import { DB_PATH, PUBLIC_TAG } from "./config";
 
 export const db = new Database(DB_PATH);
 
+export type Page = {
+  ZTITLE: string;
+  ZTEXT: string;
+  ZMODIFICATIONDATE: number;
+  Z_PK: number;
+};
+
 export const queryPagesForTag = ($tag: string) =>
   db
-    .query<
-      {
-        Z_PK: string;
-        ZTITLE: string;
-        ZTEXT: string;
-        ZMODIFICATIONDATE: number;
-      },
-      { $tag: string }
-    >(
+    .query<Page, { $tag: string }>(
       `
     SELECT n.Z_PK, n.ZTITLE, n.ZTEXT, n.ZMODIFICATIONDATE
       FROM ZSFNOTE n
@@ -26,15 +25,7 @@ export const queryPagesForTag = ($tag: string) =>
 
 export const queryPageForTitle = ($title: string) =>
   db
-    .query<
-      {
-        Z_PK: string;
-        ZTITLE: string;
-        ZTEXT: string;
-        ZMODIFICATIONDATE: number;
-      },
-      { $title: string; $tag: string }
-    >(
+    .query<Page, { $title: string; $tag: string }>(
       `
     SELECT n.Z_PK, n.ZTITLE, n.ZTEXT, n.ZMODIFICATIONDATE
       FROM ZSFNOTE n

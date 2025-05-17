@@ -40,7 +40,7 @@ export const template = ({
 
         ${
           lastUpdated
-            ? `<footer class="w-full mt-20 text-xs">Last updated: ${lastUpdated.toDateString()}</footer>`
+            ? `<footer class="w-full mt-20 mb-20 text-xs">Last updated: ${lastUpdated.toDateString()}</footer>`
             : ""
         }
       </div>

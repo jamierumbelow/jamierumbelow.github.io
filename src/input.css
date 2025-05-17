@@ -8,6 +8,18 @@ a:hover {
   @apply bg-blue-900 text-blue-50;
 }
 
+h2 {
+  @apply font-bold mt-8 mb-4;
+}
+
+h3 {
+  @apply underline mt-8 mb-4;
+}
+
+h4 {
+  @apply italic mt-8 mb-4;
+}
+
 p {
   @apply mb-4;
 }
@@ -19,4 +31,17 @@ hr {
 ul,
 ol {
   @apply mb-4;
+}
+
+ul {
+  @apply list-disc pl-4;
+}
+
+ol {
+  @apply list-decimal pl-4;
+}
+
+header ul,
+header ol {
+  @apply list-none;
 }
