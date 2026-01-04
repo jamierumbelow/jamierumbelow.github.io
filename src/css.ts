@@ -1,9 +1,10 @@
 import { spawn } from "bun";
+import { join } from "path";
 
 export const buildCss = async () => {
+  const tailwindPath = join(process.cwd(), "node_modules", ".bin", "tailwindcss");
   const proc = spawn([
-    "npx",
-    "@tailwindcss/cli",
+    tailwindPath,
     "-i",
     "./src/input.css",
     "-o",
