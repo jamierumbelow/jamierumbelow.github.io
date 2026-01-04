@@ -1,7 +1,6 @@
-import { Database } from "bun:sqlite";
-import { DB_PATH, PUBLIC_TAG } from "./config";
-
-export const db = new Database(DB_PATH);
+import { readdir, readFile } from "fs/promises";
+import { join } from "path";
+import { VAULT_PATH, PUBLIC_TAG } from "./config";
 
 export type Page = {
   ZTITLE: string;
@@ -10,29 +9,61 @@ export type Page = {
   Z_PK: number;
 };
 
-export const queryPagesForTag = ($tag: string) =>
-  db
-    .query<Page, { $tag: string }>(
-      `
-    SELECT n.Z_PK, n.ZTITLE, n.ZTEXT, n.ZMODIFICATIONDATE
-      FROM ZSFNOTE n
-      JOIN Z_5TAGS tmap ON tmap.Z_5NOTES = n.Z_PK
-      JOIN ZSFNOTETAG t ON t.Z_PK = tmap.Z_13TAGS
-     WHERE t.ZTITLE = $tag
-     `
-    )
-    .all({ $tag });
+const readMarkdownFiles = async (): Promise<Page[]> => {
+  const files = await readdir(VAULT_PATH, {
+    withFileTypes: true,
+    recursive: true,
+  });
 
-export const queryPageForTitle = ($title: string) =>
-  db
-    .query<Page, { $title: string; $tag: string }>(
-      `
-    SELECT n.Z_PK, n.ZTITLE, n.ZTEXT, n.ZMODIFICATIONDATE
-      FROM ZSFNOTE n
-      JOIN Z_5TAGS tmap ON tmap.Z_5NOTES = n.Z_PK
-      JOIN ZSFNOTETAG t ON t.Z_PK = tmap.Z_13TAGS
-      WHERE t.ZTITLE = $tag AND n.ZTITLE = $title
-      LIMIT 1
-  `
-    )
-    .get({ $title, $tag: PUBLIC_TAG });
+  const markdownFiles = files.filter(
+    (file) => file.isFile() && file.name.endsWith(".md")
+  );
+
+  const pages: Page[] = [];
+  let pk = 1;
+
+  for (const file of markdownFiles) {
+    const filePath = join(file.parentPath || file.path, file.name);
+    const content = await readFile(filePath, "utf-8");
+
+    // Check if file has #public tag
+    if (!content.includes(`#${PUBLIC_TAG}`)) {
+      continue;
+    }
+
+    // Extract title from filename (remove .md extension)
+    const title = file.name.replace(/\.md$/, "");
+
+    // Get file stats for modification date
+    const stats = await Bun.file(filePath).stat();
+    const modificationDate = stats.mtime.getTime();
+
+    pages.push({
+      ZTITLE: title,
+      ZTEXT: content,
+      ZMODIFICATIONDATE: modificationDate,
+      Z_PK: pk++,
+    });
+  }
+
+  return pages;
+};
+
+let cachedPages: Page[] | null = null;
+
+const getPages = async (): Promise<Page[]> => {
+  if (!cachedPages) {
+    cachedPages = await readMarkdownFiles();
+  }
+  return cachedPages;
+};
+
+export const queryPagesForTag = async ($tag: string): Promise<Page[]> => {
+  const pages = await getPages();
+  return pages.filter((page) => page.ZTEXT.includes(`#${$tag}`));
+};
+
+export const queryPageForTitle = async ($title: string): Promise<Page | undefined> => {
+  const pages = await getPages();
+  return pages.find((page) => page.ZTITLE === $title);
+};

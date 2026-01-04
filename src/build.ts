@@ -4,18 +4,17 @@ import { queryPageForTitle, queryPagesForTag, type Page } from "./db";
 import { md } from "./markdown";
 import { buildNav } from "./nav";
 import { template } from "./template";
-import { appleEpochDateToDate, copyDir, fileHash, slugify } from "./utils";
+import { copyDir, fileHash, slugify } from "./utils";
 import { buildCss } from "./css";
 import { compileBooks } from "./books";
 import { compilePageRefs } from "./pageRefs";
 
 const normaliseContent = (content: string) => {
-  // remove the first line
-  const lines = content.split("\n");
-  const rest = lines.slice(1).join("\n");
-  let normalised = rest;
+  let normalised = content;
   // remove the public tag
   normalised = normalised.replaceAll("#" + PUBLIC_TAG, "");
+  // remove empty lines at the start
+  normalised = normalised.trimStart();
   // done
   return normalised;
 };
@@ -41,7 +40,7 @@ const buildPage = async (page: Page, nav: string, pages: Page[]) => {
 
   const filename = `${slug}.html`;
 
-  const lastUpdated = appleEpochDateToDate(page.ZMODIFICATIONDATE);
+  const lastUpdated = new Date(page.ZMODIFICATIONDATE);
 
   let html = template({
     title,
@@ -93,14 +92,14 @@ const buildHomepage = async (
 };
 
 export const build = async () => {
-  const homepage = queryPageForTitle(PUBLIC_HOMEPAGE_TITLE);
+  const homepage = await queryPageForTitle(PUBLIC_HOMEPAGE_TITLE);
   if (!homepage) {
     throw new Error(`Homepage not found for title: ${PUBLIC_HOMEPAGE_TITLE}`);
   }
 
-  const nav = buildNav(homepage.ZTEXT);
+  const nav = await buildNav(homepage.ZTEXT);
 
-  const pages = queryPagesForTag(PUBLIC_TAG).filter(
+  const pages = (await queryPagesForTag(PUBLIC_TAG)).filter(
     (p) => p.Z_PK !== homepage.Z_PK
   );
 

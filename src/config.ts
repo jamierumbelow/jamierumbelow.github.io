@@ -1,16 +1,14 @@
 import { homedir } from "os";
 import { join } from "path";
 
-export const DB_PATH = join(
+export const VAULT_PATH = join(
   homedir(),
-  "Library",
-  "Group Containers",
-  "9K33E3U3T4.net.shinyfrog.bear",
-  "Application Data",
-  "database.sqlite"
+  "Documents",
+  "Obsidian Vault",
+  "jamierumbelow.net"
 );
 
 export const BOOKS_CSV_PATH = "./data/books.csv";
-export const PUBLIC_TAG = "PUBLIC/jamierumbelow.net";
+export const PUBLIC_TAG = "public";
 export const PUBLIC_HOMEPAGE_TITLE = "jamierumbelow.net";
 export const OUT_DIR = "docs";

@@ -3,18 +3,18 @@ import { queryPageForTitle } from "./db";
 import { md } from "./markdown";
 import { slugify } from "./utils";
 
-export const buildNav = (homepageText: string) => {
+export const buildNav = async (homepageText: string) => {
   const [, nav] = homepageText.split(/\*\*\*/);
 
-  const items = nav
+  const itemPromises = nav
     .split(/\n/)
-    .map((item) => {
+    .map(async (item) => {
       const title = item.replace(/^\[\[(.+)\]\]$/, "$1");
       if (title === "") {
         return false;
       }
 
-      const page = queryPageForTitle(title);
+      const page = await queryPageForTitle(title);
       if (!page) {
         console.warn(
           `Page not found for title: ${title} with tag #${PUBLIC_TAG}. This may be a broken link.`
@@ -27,8 +27,9 @@ export const buildNav = (homepageText: string) => {
         path: `/${slugify(page.ZTITLE)}`,
         title: page.ZTITLE,
       };
-    })
-    .filter(Boolean) as { path: string; title: string }[];
+    });
+
+  const items = (await Promise.all(itemPromises)).filter(Boolean) as { path: string; title: string }[];
 
   const navItems = items.map(
     (item) => `<li><a href="${item.path}">${item.title}</a></li>`

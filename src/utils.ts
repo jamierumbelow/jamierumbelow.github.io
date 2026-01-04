@@ -25,13 +25,6 @@ export const copyDir = async (src: string, dest: string) => {
   }
 };
 
-export const appleEpochDateToDate = (epoch: number): Date => {
-  const appleTimestamp = 769198670.369512;
-  const appleEpoch = new Date("2001-01-01T00:00:00Z");
-  const date = new Date(appleEpoch.getTime() + appleTimestamp * 1000);
-  return date;
-};
-
 export const fileHash = async (filePath: string) => {
   const file = await Bun.file(filePath);
   const fileBuffer = await file.text();
