@@ -11,7 +11,7 @@ export const deploy = async () => {
 
   proc = spawn(["git", "add", "."]);
   await proc.exited;
-  proc = spawn(["git", "commit", "-m", `deploy ${new Date().toISOString()}`]);
+  proc = spawn(["git", "commit", "--no-gpg-sign", "-m", `deploy ${new Date().toISOString()}`]);
   await proc.exited;
   proc = spawn(["git", "push"]);
   await proc.exited;
