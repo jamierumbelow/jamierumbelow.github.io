@@ -22,7 +22,7 @@ const normaliseContent = (content: string) => {
 const compileSpecials = async (text: string, pages: Page[]) => {
   let content = text;
   // replace {{books}} with the books list
-  content = await compileBooks(content);
+  // content = await compileBooks(content);
   // replace [[Page Title]] with a link to the page (if it exists)
   content = await compilePageRefs(content, pages);
   // done
@@ -103,15 +103,15 @@ export const build = async () => {
     (p) => p.Z_PK !== homepage.Z_PK
   );
 
-  const builtPages = await Promise.all(
-    pages.map((page) => buildPage(page, nav, pages))
-  );
-  builtPages.unshift(await buildHomepage(homepage, nav));
-
   await rm(OUT_DIR, { recursive: true, force: true });
   await mkdir(OUT_DIR, { recursive: true });
   await copyDir("public", OUT_DIR);
   await buildCss();
+
+  const builtPages = await Promise.all(
+    pages.map((page) => buildPage(page, nav, pages))
+  );
+  builtPages.unshift(await buildHomepage(homepage, nav));
 
   await Promise.all(
     builtPages.map(async (page) => {
