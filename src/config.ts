@@ -4,7 +4,7 @@ import { join } from "path";
 export const VAULT_PATH = join(
   homedir(),
   "Documents",
-  "Obsidian Vault",
+  "personal",
   "jamierumbelow.net"
 );
 

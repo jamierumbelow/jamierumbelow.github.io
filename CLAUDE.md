@@ -28,7 +28,7 @@ npx @tailwindcss/cli -i ./src/input.css -o ./docs/style.css
 
 ### Data Flow
 
-1. **Source**: Obsidian vault at `~/Documents/Obsidian Vault/jamierumbelow.net`
+1. **Source**: Obsidian vault at `~/Documents/personal/jamierumbelow.net`
 2. **Query**: Markdown files tagged with `#public` are read from the filesystem via `src/db.ts`
 3. **Process**: Content is normalized, markdown is rendered, special syntax is compiled
 4. **Output**: Static HTML files written to `docs/` directory
@@ -81,7 +81,7 @@ docs/                 - Build output (GitHub Pages serves from here)
 
 ## Important Notes
 
-- The site reads markdown files from `~/Documents/Obsidian Vault/jamierumbelow.net`
+- The site reads markdown files from `~/Documents/personal/jamierumbelow.net`
 - Only files tagged with `#public` are included in the build
 - Output directory is `docs/` (not `dist/` or `build/`) because GitHub Pages serves from there
 - Deployment automatically runs build, then commits all changes with timestamp
